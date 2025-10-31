@@ -1,17 +1,29 @@
-// parent
-class Animal{
-    eat(){
-        console.log("this animal eats food")
-    }
+//Call Bcak
+
+function preproduction(callback){
+    setTimeout(()=>{
+        console.log("pre-production done")
+        callback()
+    },2000)
 }
-//child class
-class dog extends Animal{
-    bark(){
-        console.log("the dog is barks")
-    }
+function shootingInprogress(callback){
+    setTimeout(()=>{
+        console.log("shooting in progress")
+        callback()
+    },5000)
 }
-let myDog=new dog()
-myDog.eat()
-myDog.bark()
+function postproduction(callback){
+    setTimeout(()=>{
+        console.log("postproduction done")
+        callback()
+    },3000)
+}
+preproduction(() => {
+    shootingInprogress(() => {
+        postproduction(() => {
+            console.log("movie released!")
+        })
+    })
+})
 
 
